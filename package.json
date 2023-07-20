@@ -1,0 +1,22 @@
+{
+  "name": "mypet-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./app.js",
+    "dev": "./node_modules/.bin/nodemon ./app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "eslint --fix ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.18.0",
+    "eslint-config-xo": "^0.41.0",
+    "nodemon": "^2.0.15"
+  }
+}
