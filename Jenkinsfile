@@ -17,7 +17,7 @@ pipeline {
     stage("Deploy") {
       steps {
           sh """
-            docker stop mypet-api
+            docker remove mypet-api
             docker run -d -p 8080:8080 --name mypet-api $IMAGE_API_NAME
           """
       }
