@@ -17,7 +17,7 @@ pipeline {
     stage("Deploy") {
       steps {
           sh """
-            docker run -d -p 8080:8080 --name mypet-api mypet-api:latest
+            docker run -d -p 8080:8080 --name mypet-api $IMAGE_API_NAME
           """
       }
     }
