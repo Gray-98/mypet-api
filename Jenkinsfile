@@ -9,6 +9,7 @@ pipeline {
     stage("Build Api") {
       steps {
           sh """
+            docker image rm -f $IMAGE_API_NAME
             docker build -t $IMAGE_API_NAME -f ./Dockerfile .
           """
       }
