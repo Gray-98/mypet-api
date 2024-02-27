@@ -12,18 +12,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.2",
+    "dayjs": "^1.11.10",
     "express": "^4.17.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "path": "^0.12.7",
     "pdfkit": "^0.13.0",
-    "sequelize": "^6.32.1",
-    "sequelize-cli": "^6.6.1",
+    "pg": "^8.11.3",
+    "sequelize": "^6.37.1",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "eslint": "^8.18.0",
     "eslint-config-xo": "^0.41.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "sequelize-cli": "^6.6.2"
   }
 }

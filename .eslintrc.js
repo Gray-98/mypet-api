@@ -1,15 +1,15 @@
 module.exports = {
 	env: {
-		browser: true,
-		es2021: true,
-	},
-	extends: [
-		'xo',
-	],
-	parserOptions: {
-		ecmaVersion: 'latest',
+		node: true
 	},
 	rules: {
-		newIsCap: false
+		semi: ['error', 'always'],
+    	quotes: ['error', 'single'],
+		strict: ["error", "safe"]
 	},
+	parser: "babel-eslint",
+	parserOptions: {
+	  ecmaVersion: 7
+	},
+	ignorePatterns: ['config/config.js', 'migrations/*.js']
 };
