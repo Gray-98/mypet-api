@@ -2,13 +2,13 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.addColumn('food', 'typeId', {
+    await queryInterface.addColumn('food', 'type_id', {
       type: Sequelize.DataTypes.UUID,
       allowNull: false
     });
 
     await queryInterface.addConstraint('food', {
-      fields: ['typeId'],
+      fields: ['type_id'],
       type: 'foreign key',
       name: 'food_type_id',
       references: {
@@ -23,7 +23,7 @@ module.exports = {
 
   async down (queryInterface, Sequelize) {
     await queryInterface.removeConstraint('food', 'food_type_id');
-    await queryInterface.removeColumn('food', 'typeId');
+    await queryInterface.removeColumn('food', 'type_id');
 
     await queryInterface.addColumn('food', 'type', {
       type: Sequelize.STRING
