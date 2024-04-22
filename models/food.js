@@ -9,8 +9,8 @@ module.exports = (sequelize, dataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        type: {
-            type: dataTypes.STRING
+        typeId: {
+            type: dataTypes.INTEGER
         },
         name: {
             type: dataTypes.STRING,
