@@ -3,7 +3,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.addColumn('food', 'typeId', {
-      type: Sequelize.INTEGER,
+      type: Sequelize.DataTypes.UUID,
       allowNull: false
     });
 

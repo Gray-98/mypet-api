@@ -3,11 +3,13 @@
 const { DataTypes } = require('sequelize')
 
 module.exports = {
-  async up (queryInterface) {
+  async up (queryInterface, Sequelize) {
     return queryInterface.createTable('food_type', {
       id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true
+        type: DataTypes.UUID,
+        allowNull: false,
+        primaryKey: true,
+        defaultValue: Sequelize.literal('uuid_generate_v4()')
       },
       name: {
         type: DataTypes.STRING,
