@@ -5,7 +5,11 @@ const { Food, FoodType } = require('../models')
 const foodStatus = require('../constants/food-status')
 
 const createNewFoodMethod = async ({ name, type, count, birthDate, endDate, remark }) => {
-    await Food.create({ name, type, count, birthDate, endDate, remark })
+    const [foodType, created] = await FoodType.findOrCreate({
+        where: { name: type },
+        defaults: { name: type }
+    })
+    await Food.create({ name, typeId: foodType.id, count, birthDate, endDate, remark })
 }
 
 const getAllFoodMethod = async () => {
