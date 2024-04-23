@@ -10,7 +10,8 @@ module.exports = (sequelize, dataTypes) => {
             autoIncrement: true
         },
         typeId: {
-            type: dataTypes.INTEGER
+            type: dataTypes.UUID,
+            field: 'type_id'
         },
         name: {
             type: dataTypes.STRING,
@@ -46,6 +47,10 @@ module.exports = (sequelize, dataTypes) => {
     }, {
         tableName: 'food'
     });
+
+    Food.associate = models => {
+        Food.belongsTo(models.FoodType, { foreignKey: 'typeId', sourceKey: 'id', as: 'foodType' })
+    }
 
     return Food;
 }
