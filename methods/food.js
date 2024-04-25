@@ -33,8 +33,8 @@ const getAllFoodMethod = async () => {
             id: f.id,
             name: f.name,
             count: f.count,
-            birthDate: f.birthDate,
-            endDate: f.endDate,
+            birthDate: dayJs(f.birthDate).format('YYYY-MM-DD'),
+            endDate: dayJs(f.endDate).format('YYYY-MM-DD'),
             remark: f.remark,
             createdAt: dayJs(f.createdAt).format('YYYY-MM-DD'),
             updatedAt: dayJs(f.updatedAt).format('YYYY-MM-DD')
