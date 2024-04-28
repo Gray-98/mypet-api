@@ -5,7 +5,7 @@ const router = express.Router();
 const { createNewFoodHandler, getAllFoodHandler, updateFoodHandler, deleteFoodHandler } = require('../handlers/food');
 
 router.get('/', async(req, res) => {
-	const result = await getAllFoodHandler();
+	const result = await getAllFoodHandler(req);
 	res.json(result);
 });
 

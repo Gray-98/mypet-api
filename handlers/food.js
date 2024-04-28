@@ -1,11 +1,10 @@
 'use strict';
 
-
-
 const { createNewFoodMethod, getAllFoodMethod, updateFoodHandlerMethod, deleteFoodMethod } = require('../methods/food');
 
-const getAllFoodHandler = async() => {
-  return await getAllFoodMethod();
+const getAllFoodHandler = async(req) => {
+  const { typeId, page, size } = req.query
+  return await getAllFoodMethod({ typeId, page, size });
 }
 
 const createNewFoodHandler = async(req) => {

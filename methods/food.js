@@ -12,8 +12,8 @@ const createNewFoodMethod = async ({ name, type, count, birthDate, endDate, rema
     await Food.create({ name, typeId: foodType.id, count, birthDate, endDate, remark })
 }
 
-const getAllFoodMethod = async () => {
-    const food = await Food.findAll({
+const getAllFoodMethod = async ({ typeId, page = 1, size = 10 }) => {
+    const options = {
         where: {
             status: foodStatus['normal']
         },
@@ -21,8 +21,17 @@ const getAllFoodMethod = async () => {
             model: FoodType,
             attributes: ['name'],
             as: 'foodType'
-        }]
-    });
+        }],
+        order: [[ 'endDate', 'ASC' ]],
+        limit: size,
+        offset: (page - 1) * size
+    }
+
+    if(typeId) {
+        options.where.typeId = typeId
+    }
+
+    const food = await Food.findAll(options);
     const foodType = await FoodType.findAll({
         attributes: ['id', 'name']
     });
