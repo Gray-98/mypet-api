@@ -22,12 +22,12 @@ const getAllFoodMethod = async ({ typeId, page = 1, size = 10 }) => {
             attributes: ['name'],
             as: 'foodType'
         }],
-        order: [[ 'endDate', 'ASC' ]],
+        order: [['endDate', 'ASC']],
         limit: size,
         offset: (page - 1) * size
     }
 
-    if(typeId) {
+    if (typeId) {
         options.where.typeId = typeId
     }
 
