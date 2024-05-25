@@ -7,40 +7,36 @@ const { createNewFoodHandler, getAllFoodHandler, updateFoodHandler, deleteFoodHa
 router.get('/', async (req, res) => {
 	try {
 		const result = await getAllFoodHandler(req);
-		res.json(result);
+		return res.json(result);
 	} catch (e) {
-		console.log(e.message);
-		res.status(500).json({ msg: e.message })
+		return res.status(500).json({ msg: e.message })
 	}
 });
 
 router.post('/', async (req, res) => {
 	try {
 		await createNewFoodHandler(req);
-		res.json({ message: 'success' })
+		return res.json({ message: 'success' })
 	} catch (e) {
-		console.log(e.message);
-		res.status(500).json({ msg: e.message })
+		return res.status(500).json({ msg: e.message })
 	}
 });
 
 router.put('/:foodId', async (req, res) => {
 	try {
 		await updateFoodHandler(req);
-		res.json({ message: 'success' })
+		return res.json({ message: 'success' })
 	} catch (e) {
-		console.log(e.message);
-		res.status(500).json({ msg: e.message })
+		return res.status(500).json({ msg: e.message })
 	}
 });
 
 router.delete('/:foodId', async (req, res) => {
 	try {
 		await deleteFoodHandler(req);
-		res.json({ message: 'success' })
+		return res.json({ message: 'success' })
 	} catch (e) {
-		console.log(e.message);
-		res.status(500).json({ msg: e.message })
+		return res.status(500).json({ msg: e.message })
 	}
 })
 
