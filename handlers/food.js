@@ -2,25 +2,39 @@
 
 const { createNewFoodMethod, getAllFoodMethod, updateFoodHandlerMethod, deleteFoodMethod } = require('../methods/food');
 
-const getAllFoodHandler = async(req) => {
-  const { typeId, page, size } = req.query
-  return await getAllFoodMethod({ typeId, page, size });
+const getAllFoodHandler = async ({ typeId, page, size }, res) => {
+  try {
+    return res.json(await getAllFoodMethod({ typeId, page, size }));
+  } catch (e) {
+    return res.status(500).json({ msg: e.message })
+  }
 }
 
-const createNewFoodHandler = async(req) => {
-  const { name, type, count, birthDate, endDate, remark } = req.body;
-  return await createNewFoodMethod({ name, type, count, birthDate, endDate, remark })
+const createNewFoodHandler = async ({ name, type, count, birthDate, endDate, remark }, res) => {
+  try {
+    await createNewFoodMethod({ name, type, count, birthDate, endDate, remark })
+    return res.json({ message: 'success' })
+  } catch (e) {
+    return res.status(500).json({ msg: e.message })
+  }
 }
 
-const updateFoodHandler = async(req) => {
-  const { foodId } = req.params;
-  const { type, name, count, birthDate, endDate, remark } = req.body
-  return await updateFoodHandlerMethod({ foodId, type, name, count, birthDate, endDate, remark })
+const updateFoodHandler = async ({ foodId, type, name, count, birthDate, endDate, remark }, res) => {
+  try {
+    await updateFoodHandlerMethod({ foodId, type, name, count, birthDate, endDate, remark })
+    return res.json({ message: 'success' })
+  } catch (e) {
+    return res.status(500).json({ msg: e.message })
+  }
 }
 
-const deleteFoodHandler = async(req) => {
-  const { foodId } = req.params;
-  return await deleteFoodMethod({ foodId })
+const deleteFoodHandler = async ({ foodId }, res) => {
+  try {
+    await deleteFoodMethod({ foodId })
+    return res.json({ message: 'success' })
+  } catch (e) {
+    return res.status(500).json({ msg: e.message })
+  }
 }
 
 module.exports = {

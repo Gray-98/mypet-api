@@ -5,40 +5,25 @@ const router = express.Router();
 const { createNewFoodHandler, getAllFoodHandler, updateFoodHandler, deleteFoodHandler } = require('../handlers/food');
 
 router.get('/', async (req, res) => {
-	try {
-		const result = await getAllFoodHandler(req);
-		return res.json(result);
-	} catch (e) {
-		return res.status(500).json({ msg: e.message })
-	}
+	const { typeId, page, size } = req.query
+	await getAllFoodHandler({ typeId, page, size }, res);
 });
 
 router.post('/', async (req, res) => {
-	try {
-		await createNewFoodHandler(req);
-		return res.json({ message: 'success' })
-	} catch (e) {
-		return res.status(500).json({ msg: e.message })
-	}
+	const { name, type, count, birthDate, endDate, remark } = req.body;
+	await createNewFoodHandler({ name, type, count, birthDate, endDate, remark }, res);
 });
 
 router.put('/:foodId', async (req, res) => {
-	try {
-		await updateFoodHandler(req);
-		return res.json({ message: 'success' })
-	} catch (e) {
-		return res.status(500).json({ msg: e.message })
-	}
+	const { foodId } = req.params;
+	const { type, name, count, birthDate, endDate, remark } = req.body
+	await updateFoodHandler({ foodId, type, name, count, birthDate, endDate, remark }, res);
 });
 
 router.delete('/:foodId', async (req, res) => {
-	try {
-		await deleteFoodHandler(req);
-		return res.json({ message: 'success' })
-	} catch (e) {
-		return res.status(500).json({ msg: e.message })
-	}
-})
+	const { foodId } = req.params;
+	await deleteFoodHandler({ foodId }, res);
+});
 
 
 module.exports = router;
