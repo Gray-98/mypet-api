@@ -1,6 +1,8 @@
 'use strict';
 
 const bcrypt = require('bcrypt')
+const config = require('config')
+const jwt = require('jsonwebtoken')
 const { User } = require('../models')
 
 const createUserMethod = async ({ name, password }) => {
@@ -14,6 +16,18 @@ const createUserMethod = async ({ name, password }) => {
     }
 }
 
+const verifyUserMethod = async ({ name, password }) => {
+    const user = await User.findOne({
+        where: { name }
+    })
+    if (bcrypt.compareSync(password, user.password)) {
+        return jwt.sign({ password }, config.get('secretKey'), { expiresIn: '1d' })
+    } else {
+        throw new Error('Invalid name or password')
+    }
+}
+
 module.exports = {
-    createUserMethod
+    createUserMethod,
+    verifyUserMethod
 }

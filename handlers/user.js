@@ -1,6 +1,6 @@
 'use strict';
 
-const { createUserMethod } = require('../methods/user')
+const { createUserMethod, verifyUserMethod } = require('../methods/user')
 
 const createUserHandler = async ({ name, password }, res) => {
     try {
@@ -15,6 +15,19 @@ const createUserHandler = async ({ name, password }, res) => {
 
 }
 
+const verifyUserHandler = async ({ name, password }, res) => {
+    try {
+        const token = await verifyUserMethod({ name, password })
+        return res.json({ token })
+    } catch (e) {
+        if (e.message === 'Invalid name or password') {
+            return res.status(401).json({ msg: e.message })
+        }
+        return res.status(500).json({ msg: e.message })
+    }
+}
+
 module.exports = {
-    createUserHandler
+    createUserHandler,
+    verifyUserHandler
 }
