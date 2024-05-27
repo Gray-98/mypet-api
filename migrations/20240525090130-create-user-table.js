@@ -12,6 +12,7 @@ module.exports = {
       },
       name: {
         type: DataTypes.STRING,
+        unique: true,
         allowNull: false
       },
       password: {
