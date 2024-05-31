@@ -9,7 +9,7 @@ const PORT = 8300
 
 app.use(cookieParser());
 app.use(cors({
-	origin: '*',
+	origin: 'http://cloud.nineteen-cat.top',
     credentials: true
 }));
 app.use(bodyParser.json());
