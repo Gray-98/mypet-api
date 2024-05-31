@@ -9,6 +9,7 @@ const PORT = 8300
 
 app.use(cookieParser());
 app.use(cors({
+	origin: '*',
     credentials: true
 }));
 app.use(bodyParser.json());
