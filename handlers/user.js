@@ -18,9 +18,10 @@ const createUserHandler = async ({ name, password }, res) => {
 const verifyUserHandler = async ({ name, password }, res) => {
     try {
         const token = await verifyUserMethod({ name, password })
-        return res.json({ token })
+        res.cookie('myPet_auth', token, { maxAge: 24 * 60 * 60 * 1000, httpOnly: true })
+        return res.json({ msg: 'success' })
     } catch (e) {
-        if (e.message === 'Invalid name or password') {
+        if (e.message === 'Invalid name or password' || e.message === 'User not exists') {
             return res.status(401).json({ msg: e.message })
         }
         return res.status(500).json({ msg: e.message })

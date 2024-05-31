@@ -20,6 +20,9 @@ const verifyUserMethod = async ({ name, password }) => {
     const user = await User.findOne({
         where: { name }
     })
+    if(!user) {
+        throw new Error('User not exists')
+    }
     if (bcrypt.compareSync(password, user.password)) {
         return jwt.sign({ password }, config.get('secretKey'), { expiresIn: '1d' })
     } else {
